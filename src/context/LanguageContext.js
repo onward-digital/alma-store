@@ -1,0 +1,273 @@
+'use client';
+
+import { createContext, useContext, useState } from 'react';
+
+const translations = {
+  en: {
+    nav_shop: 'Shop',
+    nav_about: 'Our Story',
+    nav_featured: 'Featured',
+    nav_reviews: 'Reviews',
+    nav_cart: 'Cart',
+    nav_cta: 'Shop Now',
+
+    hero_tag: 'HANDCRAFTED WITH LOVE',
+    hero_title_1: 'Artisanal goods',
+    hero_title_2: 'for mindful living.',
+    hero_subtitle: 'Discover handmade ceramics, textiles, and home goods crafted by independent artisans across Latin America. Every purchase supports a small maker.',
+    hero_cta: 'Explore Collection',
+    hero_cta2: 'Our Story',
+    hero_badge_1: 'Free Shipping 50+',
+    hero_badge_2: '100% Handmade',
+    hero_badge_3: 'Fair Trade',
+
+    products_tag: 'OUR COLLECTION',
+    products_title: 'Bestsellers',
+    products_subtitle: 'Each piece tells a story. Handcrafted by artisans who pour their heart into every detail.',
+    products_cta: 'Add to Cart',
+    products_view_all: 'View All Products',
+
+    p1_name: 'Terra Ceramic Mug',
+    p1_category: 'Ceramics',
+    p1_price: '$34',
+    p1_old_price: '',
+    p1_badge: 'BESTSELLER',
+    p1_badge_type: 'best',
+
+    p2_name: 'Woven Table Runner',
+    p2_category: 'Textiles',
+    p2_price: '$58',
+    p2_old_price: '',
+    p2_badge: 'NEW',
+    p2_badge_type: 'new',
+
+    p3_name: 'Soy Candle — Lavender',
+    p3_category: 'Home & Scent',
+    p3_price: '$22',
+    p3_old_price: '$28',
+    p3_badge: '20% OFF',
+    p3_badge_type: 'sale',
+
+    p4_name: 'Hand-Painted Bowl Set',
+    p4_category: 'Ceramics',
+    p4_price: '$76',
+    p4_old_price: '',
+    p4_badge: 'NEW',
+    p4_badge_type: 'new',
+
+    p5_name: 'Macramé Wall Hanging',
+    p5_category: 'Decor',
+    p5_price: '$45',
+    p5_old_price: '',
+    p5_badge: 'BESTSELLER',
+    p5_badge_type: 'best',
+
+    p6_name: 'Linen Apron — Natural',
+    p6_category: 'Kitchen',
+    p6_price: '$38',
+    p6_old_price: '$48',
+    p6_badge: '20% OFF',
+    p6_badge_type: 'sale',
+
+    story_tag: 'OUR STORY',
+    story_title: 'Made by hands, driven by purpose.',
+    story_p1: 'Alma Store was born from a simple belief: beautiful things should be made with intention. We partner directly with artisan workshops across Latin America to bring you goods that are crafted with care, tradition, and love.',
+    story_p2: 'Every product in our store has a maker behind it — someone who has spent years perfecting their craft. When you buy from Alma, you\'re not just getting a beautiful object. You\'re supporting a family, preserving a tradition, and choosing quality over mass production.',
+    story_stat_1_num: '40+',
+    story_stat_1_label: 'Artisan Partners',
+    story_stat_2_num: '6',
+    story_stat_2_label: 'Countries',
+    story_stat_3_num: '100%',
+    story_stat_3_label: 'Fair Trade',
+
+    features_tag: 'WHY ALMA',
+    features_title: 'More than a store',
+    f1_title: 'Handcrafted Quality',
+    f1_desc: 'Every product is made by hand using traditional techniques passed down through generations.',
+    f2_title: 'Direct Trade',
+    f2_desc: 'We work directly with artisans — no middlemen. Fair prices for makers, honest prices for you.',
+    f3_title: 'Sustainable Materials',
+    f3_desc: 'Natural, organic, and recycled materials. Low-impact packaging. Carbon-neutral shipping.',
+    f4_title: 'Free Shipping',
+    f4_desc: 'Free worldwide shipping on all orders over $50. Carefully packed to arrive in perfect condition.',
+
+    reviews_tag: 'CUSTOMER LOVE',
+    reviews_title: 'What people are saying',
+    r1_text: 'The ceramic mug is absolutely gorgeous. You can feel the quality and craftsmanship in every detail. It has become my favorite morning ritual companion.',
+    r1_name: 'Sarah M.',
+    r1_product: 'Terra Ceramic Mug',
+    r1_rating: 5,
+    r2_text: 'I bought the table runner as a gift and ended up keeping it for myself! The weaving is incredibly detailed and the colors are warm and beautiful.',
+    r2_name: 'James K.',
+    r2_product: 'Woven Table Runner',
+    r2_rating: 5,
+    r3_text: 'Love that I know exactly who made my products and that they were paid fairly. The candle smells divine and burns evenly. Will definitely order more.',
+    r3_name: 'Ana L.',
+    r3_product: 'Soy Candle — Lavender',
+    r3_rating: 5,
+
+    newsletter_title: 'Join the Alma community',
+    newsletter_subtitle: 'Get 10% off your first order, plus early access to new collections and artisan stories.',
+    newsletter_placeholder: 'Your email address',
+    newsletter_cta: 'Subscribe',
+
+    footer_desc: 'Handcrafted goods for mindful living. Supporting artisans across Latin America.',
+    footer_shop: 'Shop',
+    footer_shop_1: 'All Products',
+    footer_shop_2: 'Ceramics',
+    footer_shop_3: 'Textiles',
+    footer_shop_4: 'Home & Decor',
+    footer_company: 'Company',
+    footer_company_1: 'Our Story',
+    footer_company_2: 'Artisan Partners',
+    footer_company_3: 'Sustainability',
+    footer_help: 'Help',
+    footer_help_1: 'Shipping & Returns',
+    footer_help_2: 'FAQ',
+    footer_help_3: 'Contact Us',
+    footer_rights: 'All rights reserved.',
+  },
+  es: {
+    nav_shop: 'Tienda',
+    nav_about: 'Nuestra Historia',
+    nav_featured: 'Destacados',
+    nav_reviews: 'Reseñas',
+    nav_cart: 'Carrito',
+    nav_cta: 'Comprar',
+
+    hero_tag: 'HECHO A MANO CON AMOR',
+    hero_title_1: 'Productos artesanales',
+    hero_title_2: 'para vivir con intención.',
+    hero_subtitle: 'Descubrí cerámicas, textiles y objetos para el hogar hechos a mano por artesanos independientes de Latinoamérica. Cada compra apoya a un creador.',
+    hero_cta: 'Explorar Colección',
+    hero_cta2: 'Nuestra Historia',
+    hero_badge_1: 'Envío gratis +$50',
+    hero_badge_2: '100% Artesanal',
+    hero_badge_3: 'Comercio Justo',
+
+    products_tag: 'NUESTRA COLECCIÓN',
+    products_title: 'Los más vendidos',
+    products_subtitle: 'Cada pieza cuenta una historia. Hecha a mano por artesanos que ponen su corazón en cada detalle.',
+    products_cta: 'Agregar al Carrito',
+    products_view_all: 'Ver Todos los Productos',
+
+    p1_name: 'Taza Cerámica Terra',
+    p1_category: 'Cerámica',
+    p1_price: '$34',
+    p1_old_price: '',
+    p1_badge: 'MÁS VENDIDO',
+    p1_badge_type: 'best',
+
+    p2_name: 'Camino de Mesa Tejido',
+    p2_category: 'Textiles',
+    p2_price: '$58',
+    p2_old_price: '',
+    p2_badge: 'NUEVO',
+    p2_badge_type: 'new',
+
+    p3_name: 'Vela de Soja — Lavanda',
+    p3_category: 'Hogar & Aromas',
+    p3_price: '$22',
+    p3_old_price: '$28',
+    p3_badge: '20% OFF',
+    p3_badge_type: 'sale',
+
+    p4_name: 'Set de Bowls Pintados a Mano',
+    p4_category: 'Cerámica',
+    p4_price: '$76',
+    p4_old_price: '',
+    p4_badge: 'NUEVO',
+    p4_badge_type: 'new',
+
+    p5_name: 'Tapiz Macramé',
+    p5_category: 'Decoración',
+    p5_price: '$45',
+    p5_old_price: '',
+    p5_badge: 'MÁS VENDIDO',
+    p5_badge_type: 'best',
+
+    p6_name: 'Delantal de Lino — Natural',
+    p6_category: 'Cocina',
+    p6_price: '$38',
+    p6_old_price: '$48',
+    p6_badge: '20% OFF',
+    p6_badge_type: 'sale',
+
+    story_tag: 'NUESTRA HISTORIA',
+    story_title: 'Hecho a mano, impulsado por propósito.',
+    story_p1: 'Alma Store nació de una creencia simple: las cosas hermosas deben hacerse con intención. Trabajamos directamente con talleres artesanales en toda Latinoamérica para traerte productos hechos con cuidado, tradición y amor.',
+    story_p2: 'Cada producto en nuestra tienda tiene un creador detrás — alguien que pasó años perfeccionando su oficio. Cuando comprás en Alma, no solo recibís un objeto hermoso. Estás apoyando a una familia, preservando una tradición y eligiendo calidad sobre producción masiva.',
+    story_stat_1_num: '40+',
+    story_stat_1_label: 'Artesanos Asociados',
+    story_stat_2_num: '6',
+    story_stat_2_label: 'Países',
+    story_stat_3_num: '100%',
+    story_stat_3_label: 'Comercio Justo',
+
+    features_tag: 'POR QUÉ ALMA',
+    features_title: 'Más que una tienda',
+    f1_title: 'Calidad Artesanal',
+    f1_desc: 'Cada producto está hecho a mano usando técnicas tradicionales transmitidas por generaciones.',
+    f2_title: 'Comercio Directo',
+    f2_desc: 'Trabajamos directo con artesanos — sin intermediarios. Precios justos para creadores, precios honestos para vos.',
+    f3_title: 'Materiales Sustentables',
+    f3_desc: 'Materiales naturales, orgánicos y reciclados. Packaging de bajo impacto. Envío carbono neutral.',
+    f4_title: 'Envío Gratis',
+    f4_desc: 'Envío gratis a todo el mundo en pedidos superiores a $50. Empacado cuidadosamente.',
+
+    reviews_tag: 'AMOR DE CLIENTES',
+    reviews_title: 'Lo que dicen nuestros clientes',
+    r1_text: 'La taza de cerámica es absolutamente hermosa. Se siente la calidad y artesanía en cada detalle. Se convirtió en mi compañera favorita de cada mañana.',
+    r1_name: 'Sarah M.',
+    r1_product: 'Taza Cerámica Terra',
+    r1_rating: 5,
+    r2_text: 'Compré el camino de mesa como regalo y terminé quedándomelo! El tejido es increíblemente detallado y los colores son cálidos y hermosos.',
+    r2_name: 'James K.',
+    r2_product: 'Camino de Mesa Tejido',
+    r2_rating: 5,
+    r3_text: 'Me encanta saber quién hizo mis productos y que les pagaron justamente. La vela huele divino y se consume parejo. Definitivamente voy a pedir más.',
+    r3_name: 'Ana L.',
+    r3_product: 'Vela de Soja — Lavanda',
+    r3_rating: 5,
+
+    newsletter_title: 'Unite a la comunidad Alma',
+    newsletter_subtitle: '10% de descuento en tu primera compra, acceso anticipado a nuevas colecciones e historias de artesanos.',
+    newsletter_placeholder: 'Tu email',
+    newsletter_cta: 'Suscribirse',
+
+    footer_desc: 'Productos artesanales para vivir con intención. Apoyando artesanos en toda Latinoamérica.',
+    footer_shop: 'Tienda',
+    footer_shop_1: 'Todos los Productos',
+    footer_shop_2: 'Cerámica',
+    footer_shop_3: 'Textiles',
+    footer_shop_4: 'Hogar & Deco',
+    footer_company: 'Empresa',
+    footer_company_1: 'Nuestra Historia',
+    footer_company_2: 'Artesanos Asociados',
+    footer_company_3: 'Sustentabilidad',
+    footer_help: 'Ayuda',
+    footer_help_1: 'Envíos y Devoluciones',
+    footer_help_2: 'Preguntas Frecuentes',
+    footer_help_3: 'Contacto',
+    footer_rights: 'Todos los derechos reservados.',
+  },
+};
+
+const LanguageContext = createContext();
+
+export function LanguageProvider({ children }) {
+  const [lang, setLang] = useState('en');
+  const t = (key) => translations[lang]?.[key] || key;
+  const toggleLang = () => setLang((prev) => (prev === 'en' ? 'es' : 'en'));
+  return (
+    <LanguageContext.Provider value={{ lang, t, toggleLang }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (!context) throw new Error('useLanguage must be used within LanguageProvider');
+  return context;
+}
