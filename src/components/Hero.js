@@ -86,7 +86,7 @@ export default function Hero() {
 
           {/* Right - Product showcase */}
           <div className="animate-scale-in delay-300" style={{
-            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem',
+            display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem',
             opacity: 0,
           }}>
             {[

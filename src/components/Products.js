@@ -85,7 +85,7 @@ export default function Products() {
                       fontFamily: 'var(--font-display)', fontWeight: 700,
                       fontSize: '1.25rem', color: 'var(--color-text)',
                     }}>{p.price}</span>
-                    {p.old && (
+                    {p.old && !p.old.includes('old_price') && (
                       <span style={{
                         fontFamily: 'var(--font-body)', fontSize: '0.85rem',
                         color: 'var(--color-text-secondary)', textDecoration: 'line-through',
