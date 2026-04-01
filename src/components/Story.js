@@ -20,27 +20,14 @@ export default function Story() {
         }}>
           {/* Image side */}
           <div style={{
+            borderRadius: '20px', aspectRatio: '4/5', position: 'relative', overflow: 'hidden',
             background: 'linear-gradient(135deg, #d4a57440, #8ba58e30, #c9b89620)',
-            borderRadius: '20px', aspectRatio: '4/5', display: 'flex',
-            alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden',
           }}>
-            <div style={{
-              position: 'absolute', top: '10%', left: '10%', width: '60px', height: '60px',
-              borderRadius: '50%', background: 'rgba(181, 99, 44, 0.1)',
-              animation: 'float 4s ease-in-out infinite',
-            }} />
-            <div style={{
-              position: 'absolute', bottom: '15%', right: '15%', width: '40px', height: '40px',
-              borderRadius: '50%', background: 'rgba(90, 122, 94, 0.1)',
-              animation: 'float 5s ease-in-out infinite 1s',
-            }} />
-            <div style={{ textAlign: 'center' }}>
-              <span style={{ fontSize: '5rem', display: 'block', marginBottom: '1rem' }}>🏺🧶🕯️</span>
-              <span style={{
-                fontFamily: 'var(--font-display)', fontSize: '1.2rem',
-                color: 'var(--color-text-secondary)', fontStyle: 'italic',
-              }}>Made with soul</span>
-            </div>
+            <img
+              src="https://images.unsplash.com/photo-1604014237800-1c9102c219da?w=600&h=400&fit=crop"
+              alt="Artisan working with ceramics"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.95)', display: 'block' }}
+            />
           </div>
 
           {/* Text side */}

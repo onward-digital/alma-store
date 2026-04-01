@@ -7,9 +7,9 @@ export default function Reviews() {
   const { t } = useLanguage();
 
   const reviews = [
-    { text: t('r1_text'), name: t('r1_name'), product: t('r1_product'), rating: 5 },
-    { text: t('r2_text'), name: t('r2_name'), product: t('r2_product'), rating: 5 },
-    { text: t('r3_text'), name: t('r3_name'), product: t('r3_product'), rating: 5 },
+    { text: t('r1_text'), name: t('r1_name'), product: t('r1_product'), rating: 5, initials: 'SM', avatarBg: '#b5632c', avatarColor: '#fff' },
+    { text: t('r2_text'), name: t('r2_name'), product: t('r2_product'), rating: 5, initials: 'MK', avatarBg: '#5a7a5e', avatarColor: '#fff' },
+    { text: t('r3_text'), name: t('r3_name'), product: t('r3_product'), rating: 5, initials: 'AL', avatarBg: '#c9b896', avatarColor: '#2c2418' },
   ];
 
   return (
@@ -48,15 +48,24 @@ export default function Reviews() {
                 marginBottom: '1.5rem', flex: 1,
               }}>"{r.text}"</p>
 
-              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1rem' }}>
+              <div style={{ borderTop: '1px solid var(--color-border)', paddingTop: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                 <div style={{
-                  fontFamily: 'var(--font-display)', fontWeight: 600,
-                  fontSize: '1rem', marginBottom: '0.15rem',
-                }}>{r.name}</div>
-                <div style={{
-                  fontFamily: 'var(--font-mono)', fontSize: '0.7rem',
-                  color: 'var(--color-accent)', letterSpacing: '0.05em',
-                }}>{r.product}</div>
+                  width: '40px', height: '40px', borderRadius: '50%',
+                  background: r.avatarBg, color: r.avatarColor,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontFamily: 'var(--font-body)', fontWeight: 700, fontSize: '0.8rem',
+                  flexShrink: 0,
+                }}>{r.initials}</div>
+                <div>
+                  <div style={{
+                    fontFamily: 'var(--font-display)', fontWeight: 600,
+                    fontSize: '1rem', marginBottom: '0.15rem',
+                  }}>{r.name}</div>
+                  <div style={{
+                    fontFamily: 'var(--font-mono)', fontSize: '0.7rem',
+                    color: 'var(--color-accent)', letterSpacing: '0.05em',
+                  }}>{r.product}</div>
+                </div>
               </div>
             </div>
           ))}

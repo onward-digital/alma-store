@@ -7,12 +7,12 @@ export default function Products() {
   const { t } = useLanguage();
 
   const products = [
-    { name: t('p1_name'), cat: t('p1_category'), price: t('p1_price'), old: t('p1_old_price'), badge: t('p1_badge'), badgeType: t('p1_badge_type'), color: '#d4a574', emoji: '🏺', rating: 4.9 },
-    { name: t('p2_name'), cat: t('p2_category'), price: t('p2_price'), old: t('p2_old_price'), badge: t('p2_badge'), badgeType: t('p2_badge_type'), color: '#8ba58e', emoji: '🧶', rating: 4.8 },
-    { name: t('p3_name'), cat: t('p3_category'), price: t('p3_price'), old: t('p3_old_price'), badge: t('p3_badge'), badgeType: t('p3_badge_type'), color: '#c9b896', emoji: '🕯️', rating: 4.9 },
-    { name: t('p4_name'), cat: t('p4_category'), price: t('p4_price'), old: t('p4_old_price'), badge: t('p4_badge'), badgeType: t('p4_badge_type'), color: '#b5906e', emoji: '🍶', rating: 5.0 },
-    { name: t('p5_name'), cat: t('p5_category'), price: t('p5_price'), old: t('p5_old_price'), badge: t('p5_badge'), badgeType: t('p5_badge_type'), color: '#a8937a', emoji: '🪢', rating: 4.7 },
-    { name: t('p6_name'), cat: t('p6_category'), price: t('p6_price'), old: t('p6_old_price'), badge: t('p6_badge'), badgeType: t('p6_badge_type'), color: '#c4a882', emoji: '👩‍🍳', rating: 4.8 },
+    { name: t('p1_name'), cat: t('p1_category'), price: t('p1_price'), old: t('p1_old_price'), badge: t('p1_badge'), badgeType: t('p1_badge_type'), color: '#d4a574', emoji: '🏺', image: 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop', rating: 4.9 },
+    { name: t('p2_name'), cat: t('p2_category'), price: t('p2_price'), old: t('p2_old_price'), badge: t('p2_badge'), badgeType: t('p2_badge_type'), color: '#8ba58e', emoji: '🧶', image: 'https://images.unsplash.com/photo-1615529151169-7b1ff50dc7f2?w=400&h=400&fit=crop', rating: 4.8 },
+    { name: t('p3_name'), cat: t('p3_category'), price: t('p3_price'), old: t('p3_old_price'), badge: t('p3_badge'), badgeType: t('p3_badge_type'), color: '#c9b896', emoji: '🕯️', image: 'https://images.unsplash.com/photo-1602607688066-6403e1470965?w=400&h=400&fit=crop', rating: 4.9 },
+    { name: t('p4_name'), cat: t('p4_category'), price: t('p4_price'), old: t('p4_old_price'), badge: t('p4_badge'), badgeType: t('p4_badge_type'), color: '#b5906e', emoji: '🍶', image: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=400&h=400&fit=crop', rating: 5.0 },
+    { name: t('p5_name'), cat: t('p5_category'), price: t('p5_price'), old: t('p5_old_price'), badge: t('p5_badge'), badgeType: t('p5_badge_type'), color: '#a8937a', emoji: '🪢', image: 'https://images.unsplash.com/photo-1622127922040-13cab637ee78?w=400&h=400&fit=crop', rating: 4.7 },
+    { name: t('p6_name'), cat: t('p6_category'), price: t('p6_price'), old: t('p6_old_price'), badge: t('p6_badge'), badgeType: t('p6_badge_type'), color: '#c4a882', emoji: '👩‍🍳', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=400&h=400&fit=crop', rating: 4.8 },
   ];
 
   return (
@@ -42,13 +42,18 @@ export default function Products() {
         }}>
           {products.map((p, i) => (
             <div key={i} className="product-card">
-              {/* Image placeholder */}
-              <div style={{
-                background: `linear-gradient(135deg, ${p.color}40, ${p.color}20)`,
-                height: '220px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                position: 'relative',
-              }}>
-                <span style={{ fontSize: '4rem' }}>{p.emoji}</span>
+              {/* Product image */}
+              <div style={{ height: '220px', position: 'relative', overflow: 'hidden', background: `linear-gradient(135deg, ${p.color}40, ${p.color}20)` }}>
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.95)', display: 'block' }}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <span style={{ fontSize: '4rem', display: 'none', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}>{p.emoji}</span>
                 {/* Badge */}
                 <div style={{ position: 'absolute', top: '1rem', left: '1rem' }}>
                   <span className={`badge badge-${p.badgeType}`}>{p.badge}</span>
