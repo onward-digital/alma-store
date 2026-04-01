@@ -93,7 +93,7 @@ export default function Hero() {
               { overlay: 'rgba(181, 99, 44, 0.35)', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=400&fit=crop', label: t('hero_cat_ceramics') },
               { overlay: 'rgba(90, 122, 94, 0.35)',  image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=400&h=400&fit=crop', label: t('hero_cat_textiles') },
               { overlay: 'rgba(201, 184, 150, 0.4)', image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&h=400&fit=crop', label: t('hero_cat_candles') },
-              { overlay: 'rgba(168, 147, 122, 0.35)', image: 'https://images.unsplash.com/photo-1616627777375-0eba5f18b8e0?w=400&h=400&fit=crop', label: t('hero_cat_decor') },
+              { overlay: 'rgba(168, 147, 122, 0.35)', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=400&fit=crop', label: t('hero_cat_decor') },
             ].map((item, i) => (
               <div key={i} style={{
                 borderRadius: '16px', aspectRatio: '1', overflow: 'hidden',
