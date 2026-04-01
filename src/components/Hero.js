@@ -90,26 +90,30 @@ export default function Hero() {
             opacity: 0,
           }}>
             {[
-              { bg: 'linear-gradient(135deg, #d4a574, #c4956a)', emoji: '🏺', label: 'Ceramics' },
-              { bg: 'linear-gradient(135deg, #8ba58e, #7a9a7e)', emoji: '🧶', label: 'Textiles' },
-              { bg: 'linear-gradient(135deg, #c9b896, #b8a67a)', emoji: '🕯️', label: 'Candles' },
-              { bg: 'linear-gradient(135deg, #a8937a, #97826a)', emoji: '🪴', label: 'Decor' },
+              { overlay: 'rgba(181, 99, 44, 0.35)', image: 'https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=400&h=400&fit=crop', label: t('hero_cat_ceramics') },
+              { overlay: 'rgba(90, 122, 94, 0.35)',  image: 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=400&h=400&fit=crop', label: t('hero_cat_textiles') },
+              { overlay: 'rgba(201, 184, 150, 0.4)', image: 'https://images.unsplash.com/photo-1603006905003-be475563bc59?w=400&h=400&fit=crop', label: t('hero_cat_candles') },
+              { overlay: 'rgba(168, 147, 122, 0.35)', image: 'https://images.unsplash.com/photo-1616627777375-0eba5f18b8e0?w=400&h=400&fit=crop', label: t('hero_cat_decor') },
             ].map((item, i) => (
               <div key={i} style={{
-                background: item.bg, borderRadius: '16px',
-                aspectRatio: '1', display: 'flex', flexDirection: 'column',
-                alignItems: 'center', justifyContent: 'center', gap: '0.5rem',
-                cursor: 'pointer', transition: 'transform 0.3s ease',
+                borderRadius: '16px', aspectRatio: '1', overflow: 'hidden',
+                position: 'relative', cursor: 'pointer', transition: 'transform 0.3s ease',
                 transform: i === 0 ? 'translateY(-10px)' : i === 3 ? 'translateY(-10px)' : 'translateY(10px)',
               }}
                 onMouseEnter={(e) => e.currentTarget.style.transform = 'translateY(-15px) scale(1.03)'}
                 onMouseLeave={(e) => e.currentTarget.style.transform = i === 0 || i === 3 ? 'translateY(-10px)' : 'translateY(10px)'}
               >
-                <span style={{ fontSize: '2.5rem' }}>{item.emoji}</span>
-                <span style={{
-                  fontFamily: 'var(--font-body)', fontSize: '0.8rem',
-                  color: '#fff', fontWeight: 600, letterSpacing: '0.05em',
-                }}>{item.label}</span>
+                <img src={item.image} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', filter: 'brightness(0.9)' }} />
+                <div style={{
+                  position: 'absolute', inset: 0, background: item.overlay,
+                  display: 'flex', alignItems: 'flex-end', padding: '0.9rem',
+                }}>
+                  <span style={{
+                    fontFamily: 'var(--font-body)', fontSize: '0.85rem',
+                    color: '#fff', fontWeight: 700, letterSpacing: '0.05em',
+                    textShadow: '0 1px 4px rgba(0,0,0,0.4)',
+                  }}>{item.label}</span>
+                </div>
               </div>
             ))}
           </div>

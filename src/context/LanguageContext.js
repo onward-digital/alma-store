@@ -20,6 +20,10 @@ const translations = {
     hero_badge_1: 'Free Shipping 50+',
     hero_badge_2: '100% Handmade',
     hero_badge_3: 'Fair Trade',
+    hero_cat_ceramics: 'Ceramics',
+    hero_cat_textiles: 'Textiles',
+    hero_cat_candles: 'Candles',
+    hero_cat_decor: 'Decor',
 
     products_tag: 'OUR COLLECTION',
     products_title: 'Bestsellers',
@@ -144,6 +148,10 @@ const translations = {
     hero_badge_1: 'Envío gratis +$50',
     hero_badge_2: '100% Artesanal',
     hero_badge_3: 'Comercio Justo',
+    hero_cat_ceramics: 'Cerámica',
+    hero_cat_textiles: 'Textiles',
+    hero_cat_candles: 'Velas',
+    hero_cat_decor: 'Decoración',
 
     products_tag: 'NUESTRA COLECCIÓN',
     products_title: 'Los más vendidos',
@@ -256,7 +264,7 @@ const translations = {
 const LanguageContext = createContext();
 
 export function LanguageProvider({ children }) {
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = useState('es');
   const t = (key) => translations[lang]?.[key] || key;
   const toggleLang = () => setLang((prev) => (prev === 'en' ? 'es' : 'en'));
   return (
