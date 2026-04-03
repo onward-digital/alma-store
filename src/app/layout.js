@@ -1,5 +1,6 @@
 import './globals.css';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { CartProvider } from '@/context/CartContext';
 
 export const metadata = {
   title: 'Alma Store — Handcrafted Goods for Mindful Living',
@@ -11,7 +12,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <LanguageProvider>
-          {children}
+          <CartProvider>
+            {children}
+          </CartProvider>
         </LanguageProvider>
       </body>
     </html>

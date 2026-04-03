@@ -65,6 +65,11 @@ body {
   background: var(--color-accent);
 }
 
+/* Custom cursor — desktop only */
+@media (hover: hover) {
+  * { cursor: none !important; }
+}
+
 /* Animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(25px); }
