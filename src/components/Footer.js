@@ -1,16 +1,25 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { useLanguage } from '@/context/LanguageContext';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Leaf, Instagram, Facebook, Twitter } from 'lucide-react';
 
 export default function Footer() {
   const { t } = useLanguage();
+  const { ref, animate } = useScrollAnimation();
 
   return (
-    <footer style={{
-      background: 'var(--color-text)', color: 'var(--color-bg)',
-      padding: '4rem 1.5rem 2rem',
-    }}>
+    <motion.footer
+      ref={ref}
+      initial={{ opacity: 0 }}
+      animate={animate === 'visible' ? { opacity: 1 } : {}}
+      transition={{ duration: 0.7, ease: [0.25, 0.4, 0.25, 1] }}
+      style={{
+        background: 'var(--color-text)', color: 'var(--color-bg)',
+        padding: '4rem 1.5rem 2rem',
+      }}
+    >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
         <div style={{
           display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
@@ -29,16 +38,19 @@ export default function Footer() {
               color: 'rgba(250, 246, 241, 0.6)', lineHeight: 1.7, maxWidth: '260px',
             }}>{t('footer_desc')}</p>
             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.25rem' }}>
-              {[<Instagram size={17} />, <Facebook size={17} />, <Twitter size={17} />].map((icon, i) => (
-                <a key={i} href="#" style={{
-                  width: '36px', height: '36px', borderRadius: '50%',
-                  border: '1px solid rgba(250, 246, 241, 0.15)',
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  color: 'rgba(250, 246, 241, 0.5)', textDecoration: 'none', transition: 'all 0.3s',
-                }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--color-accent)'; e.currentTarget.style.color = 'var(--color-accent)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(250, 246, 241, 0.15)'; e.currentTarget.style.color = 'rgba(250, 246, 241, 0.5)'; }}
-                >{icon}</a>
+              {[<Instagram size={17} key="ig" />, <Facebook size={17} key="fb" />, <Twitter size={17} key="tw" />].map((icon, i) => (
+                <motion.a
+                  key={i}
+                  href="#"
+                  whileHover={{ borderColor: 'var(--color-accent)', color: 'var(--color-accent)', scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                  style={{
+                    width: '36px', height: '36px', borderRadius: '50%',
+                    border: '1px solid rgba(250, 246, 241, 0.15)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'rgba(250, 246, 241, 0.5)', textDecoration: 'none',
+                  }}
+                >{icon}</motion.a>
               ))}
             </div>
           </div>
@@ -50,13 +62,11 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {[t('footer_shop_1'), t('footer_shop_2'), t('footer_shop_3'), t('footer_shop_4')].map((link, i) => (
-                <a key={i} href="#" style={{
-                  textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)',
-                  fontFamily: 'var(--font-body)', fontSize: '0.85rem', transition: 'color 0.3s',
-                }}
-                  onMouseEnter={(e) => e.target.style.color = 'var(--color-accent)'}
-                  onMouseLeave={(e) => e.target.style.color = 'rgba(250, 246, 241, 0.5)'}
-                >{link}</a>
+                <motion.a key={i} href="#"
+                  whileHover={{ color: 'var(--color-accent)', x: 3 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)', fontFamily: 'var(--font-body)', fontSize: '0.85rem' }}
+                >{link}</motion.a>
               ))}
             </div>
           </div>
@@ -68,13 +78,11 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {[t('footer_company_1'), t('footer_company_2'), t('footer_company_3')].map((link, i) => (
-                <a key={i} href="#" style={{
-                  textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)',
-                  fontFamily: 'var(--font-body)', fontSize: '0.85rem', transition: 'color 0.3s',
-                }}
-                  onMouseEnter={(e) => e.target.style.color = 'var(--color-accent)'}
-                  onMouseLeave={(e) => e.target.style.color = 'rgba(250, 246, 241, 0.5)'}
-                >{link}</a>
+                <motion.a key={i} href="#"
+                  whileHover={{ color: 'var(--color-accent)', x: 3 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)', fontFamily: 'var(--font-body)', fontSize: '0.85rem' }}
+                >{link}</motion.a>
               ))}
             </div>
           </div>
@@ -86,13 +94,11 @@ export default function Footer() {
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {[t('footer_help_1'), t('footer_help_2'), t('footer_help_3')].map((link, i) => (
-                <a key={i} href="#" style={{
-                  textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)',
-                  fontFamily: 'var(--font-body)', fontSize: '0.85rem', transition: 'color 0.3s',
-                }}
-                  onMouseEnter={(e) => e.target.style.color = 'var(--color-accent)'}
-                  onMouseLeave={(e) => e.target.style.color = 'rgba(250, 246, 241, 0.5)'}
-                >{link}</a>
+                <motion.a key={i} href="#"
+                  whileHover={{ color: 'var(--color-accent)', x: 3 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ textDecoration: 'none', color: 'rgba(250, 246, 241, 0.5)', fontFamily: 'var(--font-body)', fontSize: '0.85rem' }}
+                >{link}</motion.a>
               ))}
             </div>
           </div>
@@ -112,6 +118,6 @@ export default function Footer() {
           </span>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
